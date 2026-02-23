@@ -85,6 +85,18 @@ class Meteor(pygame.sprite.Sprite):
         self.meteor_timer()
 
 
+def display_score():
+    game_time = pygame.time.get_ticks() // 100
+    text_surf = font.render(f'{game_time}', True, (240, 240, 240))
+    text_rect = text_surf.get_frect(midbottom = (WINDOW_WIDTH / 2, WINDOW_HEIGHT - 50))
+
+    pygame.draw.rect(display_surface, (240, 240, 240),
+                     text_rect.inflate(25, 13).move(0, -5),
+                     6, 12)
+
+    display_surface.blit(text_surf, text_rect)
+
+
 pygame.init()
 
 WINDOW_WIDTH, WINDOW_HEIGHT = 1280, 720
@@ -94,6 +106,8 @@ pygame.display.set_caption('Space shooter')
 
 running = True
 clock = pygame.time.Clock()
+font = pygame.font.Font('../font/Oxanium-Bold.ttf', 40)
+
 
 surf = pygame.Surface((100, 200))
 
@@ -129,8 +143,9 @@ while running:
     if pygame.sprite.spritecollide(player, meteor_sprites, False):
         running = False
 
-    display_surface.fill('darkgray')
+    display_surface.fill('#3a2e3f')
     all_sprites.draw(display_surface)
+    display_score()
 
     pygame.display.update()
 
