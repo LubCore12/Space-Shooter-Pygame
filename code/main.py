@@ -154,6 +154,7 @@ WINDOW_WIDTH, WINDOW_HEIGHT = 1280, 720
 display_surface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 
 pygame.display.set_caption('Space shooter')
+pygame.display.set_icon(pygame.image.load('../images/icon.png').convert_alpha())
 
 running = True
 clock = pygame.time.Clock()
